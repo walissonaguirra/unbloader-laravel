@@ -112,8 +112,8 @@ main() {
         aviso "Diretório de testes não encontrado"
     fi
    
-    # URL do Gist (substitua com a URL do seu Gist)
-    GIST_URL="https://gist.githubusercontent.com/walissonaguirra/89aeb8d5af86fe31cff7297dbaba8dc7/raw/36ff29036786ada384bdacbb456f18877d05e8d7/unbloader_laravel.patch"
+    # URL do Github
+    GIST_URL="https://raw.githubusercontent.com/walissonaguirra/unbloader-laravel/refs/heads/main/unbloader_laravel.patch"
 
     # Aplicar patch diretamente do Gist
     log "Aplicando patch de configurações"
