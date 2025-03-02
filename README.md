@@ -24,17 +24,10 @@ Script para otimização de instalações novas do Laravel 12, removendo compone
 
 ## 🚀 Uso Rápido
 
-Para executar o script em uma instalação nova do Laravel 12, siga as instruções abaixo:
+Após navega até a raiz do seu projeto laravel, execute o seguinte comando em seu terminal.
 
 ```bash
-# Crie um novo projeto Laravel
-composer create-project laravel/laravel meu-projeto
-
-# Entre no diretório do projeto
-cd meu-projeto
-
-# Execute o script diretamente do repositório
-curl -sSL 'https://raw.githubusercontent.com/walissonaguirra/unbloader-laravel/main/unbloader_laravel.sh' | bash
+bash <(curl -sSL 'https://raw.githubusercontent.com/walissonaguirra/unbloader-laravel/main/unbloader_laravel.sh')
 ```
 ## ⚙️ O que o script faz?
 
@@ -52,15 +45,11 @@ O **Unbloader Laravel** realiza as seguintes modificações no seu projeto:
 | `routes/console.php`  | Remove rotas de console            |
 | `README.md`           | Remove o README padrão             |
 
----
-
 #### 2. **Remoção de Diretórios**
 
 | **Diretório**         | **Descrição**                      |
 |-----------------------|------------------------------------|
 | `tests/`              | Remove o diretório de testes unitários e de integração |
-
----
 
 #### 3. **Limpeza de Documentação**
 
@@ -68,8 +57,6 @@ O **Unbloader Laravel** realiza as seguintes modificações no seu projeto:
 |-----------------------|------------------------------------|
 | `app/`                | Remove anotações de documentação (DocBlocks) |
 | `database/`           | Remove anotações de documentação (DocBlocks) |
-
----
 
 #### 4. **Remoção de Dependências**
 
@@ -83,8 +70,6 @@ O **Unbloader Laravel** realiza as seguintes modificações no seu projeto:
 | `@tailwindcss/vite`   | NPM        | Remove dependência de front-end    |
 | `tailwindcss`         | NPM        | Remove dependência de front-end    |
 
----
-
 #### 5. **Configurações Adicionais**
 
 | **Ação**                                                      | **Descrição**                           |
@@ -94,7 +79,6 @@ O **Unbloader Laravel** realiza as seguintes modificações no seu projeto:
 | Configuração do arquivo `.env` para usar SQLite por padrão     | Altera a configuração do banco de dados |
 | Geração de nova chave de aplicação                             | Gera uma chave única para o projeto    |
 | Formatação do código com Laravel Pint                          | Aplica o formato de código padrão do Laravel |
-
 
 ## 📄 Licença
 Este projeto está licenciado sob a [Licença MIT](LICENSE).

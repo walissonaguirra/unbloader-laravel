@@ -92,7 +92,7 @@ confirmContinue() {
     echo -e "Ele removerá vários componentes e aplicará modificações significativas no projeto."
     echo -e "Para mais detalhes sobre as alterações, visite: ${AZUL}https://github.com/walissonaguirra/unbloader-laravel${RESET}"
     echo -e "\nPressione ${GREEN}ENTER${RESET} para continuar ou ${RED}CTRL+C${RESET} para cancelar..."
-    read
+    read -r
 }
 
 # Função principal
