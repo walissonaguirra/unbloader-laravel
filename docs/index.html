@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unbloader Laravel - Otimize suas instalações Laravel</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css"> 
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">
+                    <i class="fa-brands fa-laravel"></i>
+                    <span>Unbloader Laravel</span>
+                </div>
+                <div class="nav-links">
+                    <a href="#features">Recursos</a>
+                    <a href="#installation">Instalação</a>
+                    <a href="#faq">FAQ</a>
+                </div>
+                <a href="https://github.com/walissonaguirra/unbloader-laravel" class="github-button">
+                    <i class="fa-brands fa-github"></i>
+                    GitHub
+                </a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1>Unbloader Laravel</h1>
+            <p>Script para simplificar e tornar sua instalação Laravel menos "opinativa", removendo dependências opcionais e aplicando configurações personalizadas para otimização.</p>
+            <a href="#installation" class="cta-button">
+                <i class="fa-solid fa-rocket"></i>
+                Começar Agora
+            </a>
+            <div class="terminal">
+                <code>
+                    <span class="prompt">$</span>
+                    <span class="command">bash &lt;(curl -sSL 'https://raw.githubusercontent.com/walissonaguirra/unbloader-laravel/main/unbloader_laravel.sh')</span>
+                </code>
+            </div>
+        </div>
+    </section>
+
+    <section class="features" id="features">
+        <div class="container">
+            <div class="section-title">
+                <h2>O que o script faz?</h2>
+                <p>O Unbloader Laravel realiza diversas modificações no seu projeto para otimizar e simplificar.</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fa-solid fa-trash-can"></i>
+                    </div>
+                    <h3>Remoção de Arquivos</h3>
+                    <p>Remove arquivos desnecessários como .editorconfig, .env.example, .gitattributes, phpunit.xml e outros.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fa-solid fa-folder-minus"></i>
+                    </div>
+                    <h3>Remoção de Diretórios</h3>
+                    <p>Remove diretórios não essenciais como o diretório de testes unitários e de integração.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fa-solid fa-broom"></i>
+                    </div>
+                    <h3>Limpeza de Documentação</h3>
+                    <p>Remove anotações de documentação (DocBlocks) dos diretórios app/ e database/ para um código mais limpo.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fa-solid fa-box-open"></i>
+                    </div>
+                    <h3>Remoção de Dependências</h3>
+                    <p>Remove dependências como Pail, Sail, Mockery, Phpunit e Tinker.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fa-solid fa-code"></i>
+                    </div>
+                    <h3>Frontend Minimalista</h3>
+                    <p>Remove dependências de front-end como tailwindcss e suas integrações, deixando seu projeto mais leve.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fa-solid fa-sliders"></i>
+                    </div>
+                    <h3>Configurações Adicionais</h3>
+                    <p>Personaliza a configuração do projeto, define design minimalista e configura SQLite como padrão.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="demo">
+        <div class="container">
+            <div class="section-title">
+                <h2>Demonstração</h2>
+                <p>Veja como o Unbloader Laravel transforma seu projeto Laravel em segundos.</p>
+            </div>
+            <div class="demo-content">
+                <div class="demo-video">
+                    <video controls>
+                        <source src="demo/Peek 2025-03-02 19-27.mp4" type="video/mp4">
+                        Seu navegador não suporta a tag de vídeo.
+                    </video>
+                </div>
+                <div class="demo-video">
+                    <video controls>
+                        <source src="demo/Peek 2025-03-02 19-29.mp4" type="video/mp4">
+                        Seu navegador não suporta a tag de vídeo.
+                    </video>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="installation" id="installation">
+        <div class="container">
+            <div class="section-title">
+                <h2>Instalação</h2>
+                <p>Siga os passos abaixo para começar a usar o Unbloader Laravel.</p>
+            </div>
+            <div class="installation-steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3>Crie um novo projeto Laravel</h3>
+                        <p>Primeiro, crie um novo projeto Laravel 12 usando o Composer.</p>
+                        <div class="code-block">
+                            composer create-project laravel/laravel meu-projeto
+                        </div>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h3>Navegue até a raiz do projeto</h3>
+                        <p>Acesse o diretório do projeto recém-criado.</p>
+                        <div class="code-block">
+                            cd meu-projeto
+                        </div>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h3>Execute o script Unbloader</h3>
+                        <p>Execute o script diretamente do repositório GitHub.</p>
+                        <div class="code-block">
+                            bash &lt;(curl -sSL 'https://raw.githubusercontent.com/walissonaguirra/unbloader-laravel/main/unbloader_laravel.sh')
+                        </div>
+                        <p>O script solicitará confirmação antes de prosseguir com as alterações.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h3>Comece a desenvolver</h3>
+                        <p>Seu projeto Laravel agora está otimizado e pronto para o desenvolvimento!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="faq" id="faq">
+        <div class="container">
+            <div class="section-title">
+                <h2>Perguntas Frequentes</h2>
+                <p>Respostas para as dúvidas mais comuns sobre o Unbloader Laravel.</p>
+            </div>
+            <div class="accordion">
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        É seguro usar em projetos existentes?
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </div>
+                    <div class="accordion-content">
+                        <p><strong>Não.</strong> O Unbloader Laravel foi projetado especificamente para instalações <strong>RECÉM-CRIADAS</strong> do Laravel 12. Usá-lo em projetos existentes pode resultar em perda de dados ou funcionalidades.</p>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        Quais são os requisitos para usar o script?
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </div>
+                    <div class="accordion-content">
+                        <ul>
+                            <li>Sistema Operacional: Linux (Ubuntu ou Arch)</li>
+                            <li>PHP: 8.2 ou superior</li>
+                            <li>Ferramentas: Composer, Git, NPM</li>
+                            <li>Laravel: 12 (instalação nova)</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        O que acontece com os testes unitários?
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </div>
+                    <div class="accordion-content">
+                        <p>O script remove completamente o diretório de testes e as dependências relacionadas a testes (PHPUnit, Mockery). Se você precisar de testes no seu projeto, recomendamos instala o phppest.</p>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        Posso reverter as alterações feitas pelo script?
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </div>
+                    <div class="accordion-content">
+                        <p><strong>Não</strong>  há uma função "desfazer" no script. Recomendamos fazer um backup ou commit do seu projeto antes de executar o script, caso queira restaurar ao estado anterior.</p>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        O que acontece com o front-end do projeto?
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </div>
+                    <div class="accordion-content">
+                        <p>O script remove as dependências do Tailwind CSS e suas integrações, e configura uma página inicial minimalista. Você pode adicionar suas próprias frameworks CSS ou JavaScript após a execução do script.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <i class="fa-brands fa-laravel"></i>
+                    <span>Unbloader Laravel</span>
+                </div>
+                <p>Script para otimizar instalações Laravel 12.</p>
+                <div class="footer-links">
+                    <a href="#features">Recursos</a>
+                    <a href="#installation">Instalação</a>
+                    <a href="#faq">FAQ</a>
+                </div>
+                <div class="social-links">
+                    <a href="https://github.com/walissonaguirra/unbloader-laravel">
+                        <i class="fa-brands fa-github"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/in/walissonaguirra">
+                        <i class="fa-brands fa-linkedin"></i>
+                    </a>
+                    <a href="mailto:walissoaguirra@proton.me">
+                        <i class="fa-solid fa-envelope"></i>
+                    </a>
+                </div>
+                <div class="copyright">
+                    &copy; 2025 Unbloader Laravel. Feito com ❤️ para a comunidade Laravel por <a href="https://github.com/walissonaguirra">Walisson Aguirra</a>.
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
