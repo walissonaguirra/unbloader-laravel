@@ -1,0 +1,131 @@
+diff --git a/.gitignore b/.gitignore
+index c7cf1fa..63a9050 100644
+--- a/.gitignore
++++ b/.gitignore
+@@ -4,20 +4,6 @@
+ /public/hot
+ /public/storage
+ /storage/*.key
+-/storage/pail
+ /vendor
+ .env
+-.env.backup
+-.env.production
+-.phpactor.json
+ .phpunit.result.cache
+-Homestead.json
+-Homestead.yaml
+-npm-debug.log
+-yarn-error.log
+-/auth.json
+-/.fleet
+-/.idea
+-/.nova
+-/.vscode
+-/.zed
+diff --git a/bootstrap/app.php b/bootstrap/app.php
+index 7b162da..511f690 100644
+--- a/bootstrap/app.php
++++ b/bootstrap/app.php
+@@ -7,7 +7,6 @@
+ return Application::configure(basePath: dirname(__DIR__))
+     ->withRouting(
+         web: __DIR__.'/../routes/web.php',
+-        commands: __DIR__.'/../routes/console.php',
+         health: '/up',
+     )
+     ->withMiddleware(function (Middleware $middleware) {
+diff --git a/composer.json b/composer.json
+index 88b33c4..8c40647 100644
+--- a/composer.json
++++ b/composer.json
+@@ -2,11 +2,8 @@
+     "$schema": "https://getcomposer.org/schema.json",
+     "name": "laravel/laravel",
+     "type": "project",
+-    "description": "The skeleton application for the Laravel framework.",
+-    "keywords": [
+-        "laravel",
+-        "framework"
+-    ],
++    "description": "",
++    "keywords": [],
+     "license": "MIT",
+     "require": {
+         "php": "^8.2",
+@@ -52,7 +49,7 @@
+         ],
+         "dev": [
+             "Composer\\Config::disableProcessTimeout",
+-            "npx concurrently -c \"#93c5fd,#c4b5fd,#fb7185,#fdba74\" \"php artisan serve\" \"php artisan queue:listen --tries=1\" \"php artisan pail --timeout=0\" \"npm run dev\" --names=server,queue,logs,vite"
++            "npx concurrently -c \"#93c5fd,#fdba74\" \"php artisan serve\" \"npm run dev\" --names=server,vite"
+         ]
+     },
+     "extra": {
+@@ -71,4 +68,4 @@
+     },
+     "minimum-stability": "stable",
+     "prefer-stable": true
+-}
+\ No newline at end of file
++}
+diff --git a/resources/css/app.css b/resources/css/app.css
+index 2243c60..e69de29 100644
+--- a/resources/css/app.css
++++ b/resources/css/app.css
+@@ -1,12 +0,0 @@
+-@import 'tailwindcss';
+-
+-@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+-@source '../../storage/framework/views/*.php';
+-@source "../**/*.blade.php";
+-@source "../**/*.js";
+-@source "../**/*.vue";
+-
+-@theme {
+-    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+-        'Segoe UI Symbol', 'Noto Color Emoji';
+-}
+diff --git a/resources/js/bootstrap.js b/resources/js/bootstrap.js
+index 5f1390b..e69de29 100644
+--- a/resources/js/bootstrap.js
++++ b/resources/js/bootstrap.js
+@@ -1,4 +0,0 @@
+-import axios from 'axios';
+-window.axios = axios;
+-
+-window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+diff --git a/routes/web.php b/routes/web.php
+index 86a06c5..297a1ec 100644
+--- a/routes/web.php
++++ b/routes/web.php
+@@ -1,7 +1,6 @@
+ <?php
+ 
++use Illuminate\Foundation\Inspiring;
+ use Illuminate\Support\Facades\Route;
+ 
+-Route::get('/', function () {
+-    return view('welcome');
+-});
++Route::view('/', 'welcome', ['inspiring' => Inspiring::quote()]);
+\ No newline at end of file
+diff --git a/vite.config.js b/vite.config.js
+index 29fbfe9..6bc7b53 100644
+--- a/vite.config.js
++++ b/vite.config.js
+@@ -1,13 +1,11 @@
+ import { defineConfig } from 'vite';
+ import laravel from 'laravel-vite-plugin';
+-import tailwindcss from '@tailwindcss/vite';
+ 
+ export default defineConfig({
+     plugins: [
+         laravel({
+             input: ['resources/css/app.css', 'resources/js/app.js'],
+             refresh: true,
+-        }),
+-        tailwindcss(),
++        })
+     ],
+ });
