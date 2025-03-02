@@ -7,7 +7,15 @@
 Script para otimização de instalações novas do Laravel 12, removendo componentes desnecessários e aplicando configurações personalizadas.
 
 <p align="center">
-  <img src="demo.gif" alt="Demonstração do Unbloader Laravel em ação" width="800">
+  
+
+https://github.com/user-attachments/assets/4c2aa927-a280-4be2-bbbe-c61f24ff6d17
+
+
+
+https://github.com/user-attachments/assets/c5c044aa-f077-4925-ab52-4bac1a89b7a2
+
+
 </p>
 
 > [!Warning]  
