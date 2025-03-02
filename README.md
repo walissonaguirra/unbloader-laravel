@@ -23,7 +23,7 @@ https://github.com/user-attachments/assets/c5c044aa-f077-4925-ab52-4bac1a89b7a2
 |-----------|----------------|
 | Sistema Operacional | Linux (Ubuntu ou Arch) |
 | PHP | 8.2 ou superior |
-| Ferramentas | Composer, Git, NPM (opcional) |
+| Ferramentas | Composer, Git, NPM |
 | Laravel | 12 (instalação nova) |
 
 ## 🚀 Uso Rápido
