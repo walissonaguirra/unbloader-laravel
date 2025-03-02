@@ -4,17 +4,13 @@
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Bash](https://img.shields.io/badge/Shell-Bash-4EAA25.svg?style=flat&logo=gnu-bash&logoColor=white)](https://www.gnu.org/software/bash/)
 
-Script para otimização de instalações novas do Laravel 12, removendo componentes desnecessários e aplicando configurações personalizadas.
+Script para simplificar e torna sua instalação Laravel meno "opnativa", removendo dependencia opcionais e aplicando configurações personalizadas para otimização.
 
 <p align="center">
-  
 
 https://github.com/user-attachments/assets/4c2aa927-a280-4be2-bbbe-c61f24ff6d17
 
-
-
 https://github.com/user-attachments/assets/c5c044aa-f077-4925-ab52-4bac1a89b7a2
-
 
 </p>
 
