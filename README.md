@@ -4,7 +4,7 @@
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Bash](https://img.shields.io/badge/Shell-Bash-4EAA25.svg?style=flat&logo=gnu-bash&logoColor=white)](https://www.gnu.org/software/bash/)
 
-Script para simplificar e torna sua instalação Laravel meno "opnativa", removendo dependencia opcionais e aplicando configurações personalizadas para otimização.
+Script para simplificar e torna sua instalação Laravel menos "opnativa", removendo dependencia opcionais e aplicando configurações personalizadas para otimização.
 
 <p align="center">
 
