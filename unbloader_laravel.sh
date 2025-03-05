@@ -17,7 +17,6 @@ GREEN='\033[0;32m'
 YELLOW='\033[0;33m'
 AZUL='\033[0;34m'
 MAGENTA='\033[0;35m'
-CIANO='\033[0;36m'
 RESET='\033[0m'
 
 # Função para exibir mensagens de log com formatação
@@ -39,11 +38,6 @@ error() {
 # Função para exibir mensagens de aviso
 warning() {
     echo -e "${YELLOW}[AVISO]${RESET} $1"
-}
-
-# Função para exibir título de seção
-section() {
-    echo -e "\n${CIANO}== $1 ==${RESET}"
 }
 
 # Função para remover comentários de documentação dos arquivos PHP
@@ -78,7 +72,7 @@ loading() {
 
     while kill -0 $pid 2>/dev/null; do
         for i in $(seq 0 9); do
-            echo -ne "\r${CIANO}${spin:i:1}${RESET} "
+            echo -ne "\r${AZUL}${spin:i:1}${RESET} "
             sleep $delay
         done
     done
@@ -110,7 +104,6 @@ main() {
     echo -e "${AZUL}======================================${RESET}\n"
 
     # Removendo arquivos desnecessários
-    section "Limpeza de Arquivos"
     log "Removendo arquivos desnecessários"
     arquivos_remover=(".editorconfig" ".env.example" ".gitattributes" "phpunit.xml" "routes/console.php" "README.md")
     total=${#arquivos_remover[@]}
@@ -129,7 +122,6 @@ main() {
     success "$removidos arquivos removidos com sucesso"
 
     # Removendo diretórios
-    section "Limpeza de Diretórios"
     if [ -d "tests" ]; then
         log "Removendo diretório de testes"
         rm -rf tests
@@ -142,7 +134,6 @@ main() {
     GIST_URL="https://raw.githubusercontent.com/walissonaguirra/unbloader-laravel/refs/heads/main/unbloader_laravel.patch"
 
     # Aplicar patch diretamente do Gist
-    section "Aplicação de Configurações"
     log "Aplicando patch de configurações"
     if curl -sSL "$GIST_URL" | git apply & loading $! && wait $!; then
         success "Patch aplicado com sucesso"
@@ -151,12 +142,10 @@ main() {
     fi
 
     # Removendo documentação dos diretórios
-    section "Limpeza de Documentação"
     removeDocumentation "app" && loading $!
     removeDocumentation "database" && loading $!
 
     # Removendo pacotes composer
-    section "Ajustes de Dependências"
     log "Removendo pacotes do Composer"
     if command -v composer >/dev/null 2>&1; then
         if composer remove laravel/pail laravel/sail mockery/mockery phpunit/phpunit --dev --quiet & loading $! && wait $!; then
@@ -187,7 +176,6 @@ main() {
     fi
 
     # Atualizando view welcome
-    section "Configuração de Visualização"
     log "Atualizando página inicial"
     cat <<EOL > resources/views/welcome.blade.php
 <!DOCTYPE html>
@@ -208,7 +196,6 @@ EOL
     success "Página inicial atualizada"
 
     # Criando arquivo .env
-    section "Configuração de Ambiente"
     log "Configurando arquivo de ambiente .env"
     cat <<EOL > .env
 APP_ENV=local
@@ -238,7 +225,6 @@ EOL
     fi
 
     # Formatando código com Laravel Pint
-    section "Formatação de Código"
     log "Formatando código com Laravel Pint"
     if vendor/bin/pint --quiet; then
         success "Código formatado com Laravel Pint"
