@@ -15,13 +15,13 @@
 RED='\033[0;31m'
 GREEN='\033[0;32m'
 YELLOW='\033[0;33m'
-AZUL='\033[0;34m'
+BLUE='\033[0;34m'
 MAGENTA='\033[0;35m'
 RESET='\033[0m'
 
 # Função para exibir mensagens de log com formatação
 log() {
-    echo -e "${AZUL}[INFO]${RESET} $1"
+    echo -e "${BLUE}[INFO]${RESET} $1"
 }
 
 # Função para exibir mensagens de sucesso
@@ -72,7 +72,7 @@ loading() {
 
     while kill -0 $pid 2>/dev/null; do
         for i in $(seq 0 9); do
-            echo -ne "\r${AZUL}${spin:i:1}${RESET} "
+            echo -ne "\r${BLUE}${spin:i:1}${RESET} "
             sleep $delay
         done
     done
@@ -84,7 +84,7 @@ confirmContinue() {
     echo -e "\n${RED}⚠️  AVISO IMPORTANTE ⚠️${RESET}"
     echo -e "Este script é destinado APENAS para instalações ${GREEN}RECÉM-CRIADAS${RESET} do Laravel 12."
     echo -e "Ele removerá vários componentes e aplicará modificações significativas no projeto."
-    echo -e "Para mais detalhes sobre as alterações, visite: ${AZUL}https://github.com/walissonaguirra/unbloader-laravel${RESET}"
+    echo -e "Para mais detalhes sobre as alterações, visite: ${BLUE}https://github.com/walissonaguirra/unbloader-laravel${RESET}"
     echo -e "\nPressione ${GREEN}ENTER${RESET} para continuar ou ${RED}CTRL+C${RESET} para cancelar..."
     read -r
 }
@@ -99,9 +99,9 @@ main() {
         error "Este script deve ser executado na raiz de um projeto Laravel"
     fi
 
-    echo -e "\n${AZUL}======================================${RESET}"
+    echo -e "\n${BLUE}======================================${RESET}"
     echo -e "${GREEN}   UNBLOADER LARAVEL - INICIANDO 🚀${RESET}"
-    echo -e "${AZUL}======================================${RESET}\n"
+    echo -e "${BLUE}======================================${RESET}\n"
 
     # Removendo arquivos desnecessários
     log "Removendo arquivos desnecessários"
