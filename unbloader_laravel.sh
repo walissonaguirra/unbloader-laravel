@@ -18,6 +18,8 @@ YELLOW='\033[0;33m'
 BLUE='\033[0;34m'
 MAGENTA='\033[0;35m'
 RESET='\033[0m'
+BOLD='\033[1m'
+CIANO='\033[0;36m'
 
 # Função para exibir mensagens de log com formatação
 log() {
@@ -40,28 +42,34 @@ warning() {
     echo -e "${YELLOW}[AVISO]${RESET} $1"
 }
 
+# Função para exibir título de seção
+section() {
+    echo -e "\n${CIANO}== $1 ==${RESET}"
+}
+
 # Função para remover comentários de documentação dos arquivos PHP
-removeDocumentation() {
+removeDocBlock() {
     diretorio=${1:-app}
     if [ ! -d "$diretorio" ]; then
-        warning "Diretório $diretorio não encontrado. Pulando remoção de documentação."
+        warning "Diretório $diretorio/ não encontrado. Pulando remoção de DocBlocks."
         return
     fi
 
-    log "Removendo documentação do diretório $diretorio"
+    log "Removendo comentarios DocBlocks do diretório ${BOLD}$diretorio/${RESET}"
 
     total_arquivos=$(find "$diretorio" -name "*.php" | wc -l)
     if [ "$total_arquivos" -eq 0 ]; then
-        warning "Nenhum arquivo PHP encontrado em $diretorio."
+        warning "Nenhum arquivo PHP encontrado em ${BOLD}$diretorio/${RESET}."
         return
     fi
 
     find "$diretorio" -name "*.php" | while read -r arquivo; do
         sed -i "/\/\*\*/,/\*\//d" "$arquivo"
+        success "DocBlocks removido em ${BOLD}$arquivo${RESET}"
     done
 
+    # success "Documentação removida de $total_arquivos arquivos em $diretorio"
     echo -ne "\r"
-    success "Documentação removida de $total_arquivos arquivos em $diretorio"
 }
 
 # Função para mostrar a animação de carregamento
@@ -83,7 +91,7 @@ loading() {
 confirmContinue() {
     echo -e "\n${RED}⚠️  AVISO IMPORTANTE ⚠️${RESET}"
     echo -e "Este script é destinado APENAS para instalações ${GREEN}RECÉM-CRIADAS${RESET} do Laravel 12."
-    echo -e "Ele removerá vários componentes e aplicará modificações significativas no projeto."
+    echo -e "Ele removerá vários pacotes e aplicará modificações significativas no projeto."
     echo -e "Para mais detalhes sobre as alterações, visite: ${BLUE}https://github.com/walissonaguirra/unbloader-laravel${RESET}"
     echo -e "\nPressione ${GREEN}ENTER${RESET} para continuar ou ${RED}CTRL+C${RESET} para cancelar..."
     read -r
@@ -104,36 +112,36 @@ main() {
     echo -e "${BLUE}======================================${RESET}\n"
 
     # Removendo arquivos desnecessários
+    section "Limpeza de Arquivos"
     log "Removendo arquivos desnecessários"
     arquivos_remover=(".editorconfig" ".env.example" ".gitattributes" "phpunit.xml" "routes/console.php" "README.md")
     total=${#arquivos_remover[@]}
-    removidos=0
 
     for ((i=0; i<total; i++)); do
         arquivo="${arquivos_remover[$i]}"
         if [ -f "$arquivo" ]; then
             rm "$arquivo"
-            ((removidos++))
+            success "Arquivo ${BOLD}$arquivo${RESET} removido"
         else
             warning "Arquivo não encontrado: $arquivo"
         fi
     done && loading
     
-    success "$removidos arquivos removidos com sucesso"
-
     # Removendo diretórios
+    section "Limpeza de Diretórios"
     if [ -d "tests" ]; then
         log "Removendo diretório de testes"
         rm -rf tests
-        success "Diretório de testes removido"
+        success "Diretório ${BOLD}testes/${RESET} removido"
     else
-        warning "Diretório de testes não encontrado"
+        warning "Diretório ${BOLD}testes/${RESET} não encontrado"
     fi
    
     # URL do Github
     GIST_URL="https://raw.githubusercontent.com/walissonaguirra/unbloader-laravel/refs/heads/main/unbloader_laravel.patch"
 
     # Aplicar patch diretamente do Gist
+    section "Aplicação de Configurações"
     log "Aplicando patch de configurações"
     if curl -sSL "$GIST_URL" | git apply & loading $! && wait $!; then
         success "Patch aplicado com sucesso"
@@ -142,22 +150,31 @@ main() {
     fi
 
     # Removendo documentação dos diretórios
-    removeDocumentation "app" && loading $!
-    removeDocumentation "database" && loading $!
+    section "Limpeza de Documentação"
+    removeDocBlock "app" && loading $!
+    removeDocBlock "database" && loading $!
 
     # Removendo pacotes composer
+    section "Ajustes de Dependências"
     log "Removendo pacotes do Composer"
     if command -v composer >/dev/null 2>&1; then
         if composer remove laravel/pail laravel/sail mockery/mockery phpunit/phpunit --dev --quiet & loading $! && wait $!; then
-            success "Pacotes de desenvolvimento removidos"
+            success "Pacote ${BOLD}laravel/pail${RESET} removido"
+            success "Pacote ${BOLD}laravel/sail${RESET} removido"
+            success "Pacote ${BOLD}mockery/mockery${RESET} removido"
+            success "Pacote ${BOLD}phpunit/phpunit${RESET} removido"
         else
             warning "Problema ao remover pacotes de desenvolvimento"
+            warning "Pacote ${BOLD}laravel/pail${RESET} não removido"
+            warning "Pacote ${BOLD}laravel/sail${RESET} não removido"
+            warning "Pacote ${BOLD}mockery/mockery${RESET} não removido"
+            warning "Pacote ${BOLD}phpunit/phpunit${RESET} não removido"
         fi
 
         if composer remove laravel/tinker --quiet & loading $! && wait $!; then
-            success "Laravel Tinker removido"
+            success "Pacote ${BOLD}laravel/tinker${RESET} removido"
         else
-            warning "Problema ao remover Laravel Tinker"
+            warning "Problema ao remover ${BOLD}laravel/tinker${RESET}"
         fi
     else
         error "Composer não encontrado. Verifique se está instalado e disponível no PATH"
@@ -167,15 +184,19 @@ main() {
     log "Removendo pacotes NPM"
     if command -v npm >/dev/null 2>&1; then
         if npm uninstall @tailwindcss/vite tailwindcss --silent & loading $! && wait $!; then
-            success "Pacotes NPM removidos"
+            success "Pacote ${BOLD}@tailwindcss/vite${RESET} removido"
+            success "Pacote ${BOLD}tailwindcss${RESET} removido"
         else
             warning "Problema ao remover pacotes NPM"
+            warning "Pacote ${BOLD}@tailwindcss/vite${RESET} não removido"
+            warning "Pacote ${BOLD}tailwindcss${RESET} não removido"
         fi
     else
         warning "NPM não encontrado. Pacotes não foram removidos"
     fi
 
     # Atualizando view welcome
+    section "Configuração de Views"
     log "Atualizando página inicial"
     cat <<EOL > resources/views/welcome.blade.php
 <!DOCTYPE html>
@@ -196,6 +217,7 @@ EOL
     success "Página inicial atualizada"
 
     # Criando arquivo .env
+    section "Configuração de Ambiente"
     log "Configurando arquivo de ambiente .env"
     cat <<EOL > .env
 APP_ENV=local
@@ -225,6 +247,7 @@ EOL
     fi
 
     # Formatando código com Laravel Pint
+    section "Formatação de Código"
     log "Formatando código com Laravel Pint"
     if vendor/bin/pint --quiet; then
         success "Código formatado com Laravel Pint"
